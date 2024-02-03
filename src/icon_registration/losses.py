@@ -592,8 +592,8 @@ class LNCC(SimilarityBase):
             1
             - (self.blur(I * J) - (self.blur(I) * self.blur(J)))
             / torch.sqrt(
-                (self.blur(I * I) - self.blur(I) ** 2 + 0.00001)
-                * (self.blur(J * J) - self.blur(J) ** 2 + 0.00001)
+                (torch.relu(self.blur(I * I) - self.blur(I) ** 2) + 0.00001)
+                * (torch.relu(self.blur(J * J) - self.blur(J) ** 2) + 0.00001)
             )
         )
 
